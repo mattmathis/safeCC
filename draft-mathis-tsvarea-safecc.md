@@ -1,12 +1,5 @@
 ---
-###
-# Internet-Draft Markdown Template
-#
-# This template uses kramdown-rfc: https://github.com/cabo/kramdown-rfc
-# You can replace the entire file if you prefer a different format.
-# Change the file extension to match the format (.xml for XML, etc...)
-#
-###
+
 title: "Safe Congestion Control"
 abbrev: "Safe CC"
 category: experimental
