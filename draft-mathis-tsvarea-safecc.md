@@ -17,14 +17,11 @@ v: 3
 area: AREA
 workgroup: WG Working Group
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - congestion control
 venue:
   group: tsvwg
   mail: tsvwg@ietf.org
   github: https://github.com/mattmathis/safeCC/
-
 
 author:
 
