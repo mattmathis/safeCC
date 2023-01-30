@@ -63,30 +63,31 @@ The phrase "under adverse conditions" refers to any increase in any congestion s
 
 # Tentative list of criteria
 
-1 Free from regenerative congestion - adverse conditions do not cause additional presented load
+1. Free from regenerative congestion - adverse conditions do not cause additional presented load
 
-1 Free from congestion collapse - adverse conditions do not cause declining goodput/overhead ratio 
+1. Free from congestion collapse - adverse conditions do not cause declining goodput overhead ratio 
 
-1 control frequency scales with 1/rtt but is insensitive to data rate over the CC's useful operating region (document useful operating region)
+1. control frequency scales with 1/rtt but is insensitive to data rate over the CC's useful operating region (document useful operating region)
 
-1 Steady state bulk transport should not cause more than 2% loss over any unchanging network.  
-1 Slowstart should not overshoot for longer than one RTT (But note that correct slowstarts are permitted to cause 1 RTT of 50% packet loss).  e.g. window/rate reductions should start when losses/disorder is first detected, even before the loss recovery can decide if the missing segments are due to reordering or loss.
+1. Steady state bulk transport should not cause more than 2\% loss over any unchanging network.
 
-1 Step changes in link properties or cross traffic should not cause losses that are larger than the change in maximum flight size supported by the link. Specifically, during loss recovery the transport is not permitted to send more data than reported at the receiver.  (Conservative property from PRR)
+3. Slowstart should not overshoot for longer than one RTT (But note that correct slowstarts are permitted to cause 1 RTT of 50% packet loss).  e.g. window/rate reductions should start when losses/disorder is first detected, even before the loss recovery can decide if the missing segments are due to reordering or loss.
 
-1 All application stacks must use connection caching, CC state caching  or some other mechanism such that application workloads are prevented from causing persistent or repeated overlapping slowstarts.
+1. Step changes in link properties or cross traffic should not cause losses that are larger than the change in maximum flight size supported by the link. Specifically, during loss recovery the transport is not permitted to send more data than reported at the receiver.  (Conservative property from PRR)
 
-1 The CCA should have monotonic response to all congestion signals that it responds to (loss, marks, delay, etc) otherwise it will have multiple stable operating points for the same network conditions  (and exhibit stable pathologies such as latecomer (dis)advantage)
+1. All application stacks must use connection caching, CC state caching  or some other mechanism such that application workloads are prevented from causing persistent or repeated overlapping slowstarts.
 
-1 Freedom from starvation (need a new strong definition).   Flows below some resource threshold (data rate, window size, ConEx marks, etc) will successfully search upwards, as long as there is either idle capacity or other flows above the same(?) threshold.
+1. The CCA should have monotonic response to all congestion signals that it responds to (loss, marks, delay, etc) otherwise it will have multiple stable operating points for the same network conditions  (and exhibit stable pathologies such as latecomer (dis)advantage)
 
-1 Don't create steady state standing queues larger than k*minRTT*maxBW, for some prescribed k, to be defined in the standard.
+1. Freedom from starvation (need a new strong definition).   Flows below some resource threshold (data rate, window size, ConEx marks, etc) will successfully search upwards, as long as there is either idle capacity or other flows above the same(?) threshold.
 
-1 Individual flows don't keep queues pegged at full even if the queues are substantially smaller than minRTT*maxBW:  when there is queue full, CC should reduce it's window enough to create some small headroom to prevent locking out new flows
+1. Don't create steady state standing queues larger than k*minRTT*maxBW, for some prescribed k, to be defined in the standard.
 
-1 Balance the worst case queue backlog against the need to trigger mode shifting in links that batch data.   This should become a global (policy) parameter of the Internet, because the queue backlogs force jitter on flows trying to do realtime without QoS.
+1. Individual flows don't keep queues pegged at full even if the queues are substantially smaller than minRTT*maxBW:  when there is queue full, CC should reduce it's window enough to create some small headroom to prevent locking out new flows
 
-1 Self scaling at all layers.  If the network is too slow, the application must also slow down to avoid "stacking" requests.
+1. Balance the worst case queue backlog against the need to trigger mode shifting in links that batch data.   This should become a global (policy) parameter of the Internet, because the queue backlogs force jitter on flows trying to do realtime without QoS.
+
+1. Self scaling at all layers.  If the network is too slow, the application must also slow down to avoid "stacking" requests.
 
 
 # Security Considerations
