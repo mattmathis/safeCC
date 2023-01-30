@@ -1,4 +1,20 @@
-# Internet-Draft Template Repository
+# Safe Congestion Control
+
+This is draft currently targeted at the tsvarea but is expected to move to the congress WG once it launches.
+
+TODO post precompiled versions
+
+## Building the Draft
+
+TODO Instruction
+
+## Contributing
+
+TODO Instructions for contributors
+
+##
+
+# ORIGINAL README from: Internet-Draft Template Repository
 
 Use this repository as a template if you want to start working on
 [IETF](https://www.ietf.org/) documents.
