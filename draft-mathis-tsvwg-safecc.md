@@ -65,7 +65,7 @@ The phrase "under adverse conditions" refers to any increase in any congestion s
 
 1. Free from regenerative congestion - adverse conditions do not cause additional presented load
 
-1. Free from congestion collapse - adverse conditions do not cause declining goodput overhead ratio 
+1. Free from congestion collapse - adverse conditions do not cause declining goodput overhead ratio
 
 1. control frequency scales with 1/rtt but is insensitive to data rate over the CC's useful operating region (document useful operating region)
 
