@@ -94,7 +94,7 @@ The phrase "under adverse conditions" refers to any increase in any congestion s
 
 TODO Security
 
-This document provides evaluation critera for COngestion controm and other implementation or algorithems that might be deployed on the internet.   It has not direct security consierations of its own.
+This document provides evaluation critera for Congestion control and other implementation or algorithems that might be deployed on the internet.   It has no direct security consierations of its own.
 
 Over the long haul it is expected to increase the overall robustness of the Internet by helping to eliminate pathological congestion behaviors that have the potential cause the Internet to be fragile under some conditions.
 
