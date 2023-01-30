@@ -2,7 +2,7 @@
 
 This is draft currently targeted at the tsvarea but is expected to move to the congress WG once it launches.
 
-T0DO post precompiled versions
+TODO post precompiled versions
 
 ## Building the Draft
 
