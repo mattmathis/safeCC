@@ -1,13 +1,17 @@
 ---
 
-title: "Safe Congestion Control"
-abbrev: "Safe CC"
-category: experimental
-
-docname: draft-mathis-tsvarea-safecc-latest
-submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
-number:
+title: Safe Congestion Control
+abbrev: Safe CC
+docname: draft-mathis-tsvwg-safecc-latest
 date: {DATE}
+category: exp
+submissiontype: IETF
+ipr: trust200902
+area: Transport
+workgroup: tsvwg
+
+number:
+
 consensus: true
 v: 3
 area: AREA
@@ -17,14 +21,13 @@ keyword:
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: TSVAREA
-  type: Working Group
-  mail: tsvarea@ietf.org
-  arch: https://example.com/WG
+  group: tsvwg
+  mail: tsvwg@ietf.org
   github: https://github.com/mattmathis/safeCC/
 
 
 author:
+
  -
     fullname: Matt Mathis
     organization: Measurement Lab
