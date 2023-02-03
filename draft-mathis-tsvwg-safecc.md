@@ -19,17 +19,18 @@ workgroup: WG Working Group
 keyword:
  - congestion control
 venue:
-  group: tsvwg
+  group: TSVWG
   mail: tsvwg@ietf.org
-  github: https://github.com/mattmathis/safeCC/
+  github: mattmathis/safeCC/
 
 author:
 
  -
     fullname: Matt Mathis
-    organization: Measurement Lab
+    organization: Freelance, Measurement Lab
     abbrev: MLab
     email: mattmathis@measurementlab.net
+    uri: "https://mattmathis.net/"
 
 normative:
 
