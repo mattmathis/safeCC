@@ -29,13 +29,13 @@ About This Document
    Status information for this document may be found at
    https://datatracker.ietf.org/doc/draft-mathis-tsvwg-safecc/.
 
-   Discussion of this document takes place on the tsvwg Working Group
+   Discussion of this document takes place on the TSVWG Working Group
    mailing list (mailto:tsvwg@ietf.org), which is archived at
    https://mailarchive.ietf.org/arch/browse/tsvwg/.  Subscribe at
    https://www.ietf.org/mailman/listinfo/tsvwg/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/https://github.com/mattmathis/safeCC/.
+   https://github.com/mattmathis/safeCC/.
 
 Status of This Memo
 
@@ -220,5 +220,6 @@ Acknowledgments
 Author's Address
 
    Matt Mathis
-   Measurement Lab
+   Freelance, Measurement Lab
    Email: mattmathis@measurementlab.net
+   URI:   https://mattmathis.net/
