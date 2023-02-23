@@ -66,31 +66,54 @@ The phrase "under adverse conditions" refers to any increase in any congestion s
 
 # Tentative list of criteria
 
-1. Free from regenerative congestion - Adverse conditions do not cause additional presented load.
+## Free from regenerative congestion
 
-1. Free from congestion collapse - Adverse conditions do not cause declining goodput / overhead ratio
+Adverse conditions do not cause additional presented load.
 
-1. Bound control frequency - Control frequency scales with 1/rtt but is insensitive to data rate.
+## Free from congestion collapse
+Adverse conditions do not cause declining goodput / overhead ratio
 
-1. Bound steady state losses - Steady state bulk transport should not cause more than 2\% loss over any unchanging network.
+## Bound control frequency
 
-1. Bound slowstart duration and loss - Slowstart into a droptail queue should not cause more than one RTT of loss nor cause more than 50% loss for that RTT.   e.g. Provisional window/rate reductions should start when losses/disorder is first detected, even before the loss recovery can decide if the missing segments are due to reordering or loss.
+Control frequency scales with 1/rtt but is insensitive to data rate.
 
-1. Bound losses on link changes - Step changes in link properties (RTT, bandwidth or queue size) or cross traffic should not cause losses that are larger than the change in maximum flight size supported by the link. Specifically, during loss recovery the transport is not permitted to send more data than reported at the receiver.  (Conservative property from PRR.)
+## Bound steady state losses
 
-1. No unnecessary slowstarts - All application stacks must use connection caching, CC state caching or some other mechanism such that application workloads are prevented from causing persistent or repeated overlapping slowstarts.
+Steady state bulk transport should not cause more than 2\% loss over any unchanging network.
 
-1. Monotonic response - The CCA should have monotonic response to all congestion signals that it responds to (loss, marks, delay, etc) otherwise it will have multiple stable operating points for the same network conditions.  It would be likely to exhibit stable pathologies such as latecomer (dis)advantage.
+## Bound slowstart duration and loss
+Slowstart into a droptail queue should not
+cause more than one RTT of loss nor cause more than 50% loss for that RTT.   e.g. Provisional window/rate reductions should start when losses/disorder is first detected, even before the loss recovery can decide if the missing segments are due to reordering or loss.
 
-1. Freedom from starvation - (need a new strong definition).   Flows below some resource threshold (data rate, window size, ConEx marks, etc) will successfully search upwards, as long as there is either idle capacity or other flows above the same(?) threshold.
+## Bound losses on link changes
+Step changes in link properties (RTT, bandwidth or queue size) or cross traffic should not cause losses that are larger than the change in maximum flight size supported by the link. Specifically, during loss recovery the transport is not permitted to send more data than reported at the receiver.  (Conservative property from PRR.)
 
-1. Bound standing queue - Do not create steady state standing queues larger than k\*minRTT\*maxBW, for some prescribed k, to be defined.
+## No unnecessary slowstarts
 
-1. Maintain queue headroom - Individual flows do not keep queues pegged at full even if the queues are substantially smaller than minRTT\*maxBW.  When there is queue full, CC should reduce its window enough to create some small headroom to prevent locking out new flows
+All application stacks must use connection caching, CC state caching or some other mechanism such that application workloads are prevented from causing persistent or repeated overlapping slowstarts.
 
-1. Balanced probe size - Balance the worst case queue backlog against the need to trigger mode shifting in links that batch data.   This should become a global (policy) parameter of the Internet, because the queue backlogs force jitter on flows trying to do realtime without QoS.
+## Monotonic response
+The CCA should have monotonic response to all congestion signals that it responds to (loss, marks, delay, etc) otherwise it will have multiple stable operating points for the same network conditions.  It would be likely to exhibit stable pathologies such as latecomer (dis)advantage.
 
-1. Self scaling - at all layers.  If the network is too slow, the application must also slow down to avoid "stacking" requests.
+## Freedom from starvation
+
+(need a new strong definition).   Flows below some resource threshold (data rate, window size, ConEx marks, etc) will successfully search upwards, as long as there is either idle capacity or other flows above the same(?) threshold.
+
+## Bound standing queue
+
+Do not create steady state standing queues larger than k\*minRTT\*maxBW, for some prescribed k, to be defined.
+
+## Maintain queue headroom
+
+Individual flows do not keep queues pegged at full even if the queues are substantially smaller than minRTT\*maxBW.  When there is queue full, CC should reduce its window enough to create some small headroom to prevent locking out new flows
+
+## Balanced probe size
+
+Balance the worst case queue backlog against the need to trigger mode shifting in links that batch data.   This should become a global (policy) parameter of the Internet, because the queue backlogs force jitter on flows trying to do realtime without QoS.
+
+## Self scaling
+
+at all layers.  If the network is too slow, the application must also slow down to avoid "stacking" requests.
 
 
 # Security Considerations
