@@ -89,9 +89,9 @@ Adverse conditions do not cause increasing overhead, specifically do not cause d
 
 Test: for a fixed work load, the overhead must be constant, independent of the network congestions across the entire operating range of the application or network
 
-If there is packet loss, the retransmits must exactly match the packet losses 
+If there is packet loss, the retransmits must exactly match the packet losses
 
-Example of an application that can cause congestion collapse: a download engine that responds to transient network errors or persistent congestion by restarting downloads from the beginning. 
+Example of an application that can cause congestion collapse: a download engine that responds to transient network errors or persistent congestion by restarting downloads from the beginning.
 
 ## Free from regenerative congestion {#noRegeneration}
 
