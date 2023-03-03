@@ -4,8 +4,8 @@
 
 WG Working Group                                               M. Mathis
 Internet-Draft                                                      MLab
-Intended status: Experimental                           23 February 2023
-Expires: 27 August 2023
+Intended status: Experimental                               3 March 2023
+Expires: 4 September 2023
 
 
                         Safe Congestion Control
@@ -13,12 +13,12 @@ Expires: 27 August 2023
 
 Abstract
 
-   We present criteria for evaluating Congestion Control for behaviors
-   that have the potential to cause harm to other Internet applications
-   or users.
+   We present criteria for evaluating Congestion Control Algorithms for
+   behaviors that have the potential to cause harm to Internet
+   applications or users.
 
    Although our primary focus is the safety of transport layer
-   congestion control, many of these criteria need to be applied to all
+   congestion control, many of these criteria should be applied to all
    protocol layers: entire stacks, libraries and applications
    themselves.
 
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 August 2023.
+   This Internet-Draft will expire on 4 September 2023.
 
 Copyright Notice
 
@@ -70,63 +70,69 @@ Copyright Notice
 
 Table of Contents
 
-   1.  Introduction
-   2.  Conventions and Definitions
-   3.  Tentative list of criteria
-     3.1.  Free from regenerative congestion
-     3.2.  Free from congestion collapse
-     3.3.  Bound control frequency
-     3.4.  Bound steady state losses
-     3.5.  Bound slowstart duration and loss
-     3.6.  Bound losses on link changes
-     3.7.  No unnecessary slowstarts
-     3.8.  Monotonic response
-     3.9.  Freedom from starvation
-     3.10. Bound standing queue
-     3.11. Maintain queue headroom
-     3.12. Balanced probe size
-     3.13. Self scaling
-   4.  Security Considerations
-   5.  IANA Considerations
-   6.  Normative References
+   1.  Preamble
+   2.  Introduction
+   3.  Conventions and Definitions
+   4.  Tentative list of criteria
+     4.1.  Free from congestion collapse
+     4.2.  Free from regenerative congestion
+     4.3.  Bound steady state losses
+     4.4.  Bound slowstart duration and loss
+     4.5.  Bound losses on link changes
+     4.6.  No unnecessary slowstarts
+     4.7.  Freedom from starvation
+     4.8.  Bound standing queue
+     4.9.  Maintain queue headroom
+     4.10. Bound control frequency
+     4.11. Monotonic response
+     4.12. Balanced probe size
+     4.13. Self scaling
+   5.  Security Considerations
+   6.  IANA Considerations
+   7.  Normative References
+   Appendix A.  Estimating min RTT
    Acknowledgments
    Author's Address
 
-1.  Introduction
+1.  Preamble
 
-   We present criteria for evaluating Congestion Control for behaviors
-   that have the potential to cause harm to other Internet applications
-   or users.  Although our primary focus is the safety of congestion
-   control, many of these criteria need to be applied to all protocol
-   layers: entire stacks, libraries and applications themselves.
+   This document is written in extra terse congestion control jargon,
+   approximately one sentence per paragraph.
 
-   Ideally we would like to cast these criteria as requirements; however
-   such an effort will fail because many of them have known exceptions
-   that don't seem to be important.
+   Editorial comments to authors are enclosed in [square brackets].
+   Outstanding action items may be tagged with @@@@@.
+
+   [Remove this section before publication]
+
+2.  Introduction
+
+   We present criteria for evaluating Congestion Control Algorithms for
+   behaviors that have the potential to cause harm to Internet
+   applications or users.
+
+   Ideally we would cast these criteria as requirements; however such an
+   effort is doomed to fail because many of them have technical
+   exceptions that are unavoidable in ways that are not important.  For
+   an example of this issue see Section 4.1
 
    As an interim position: all implementations SHOULD comply with all
-   criteria, and MUST document all exceptions: under what circumstances
-   and how severely they fail to comply?
+   criteria, and MUST document all exceptions and evaluate the risks
+   associated with the exceptions.  Under what circumstances and how
+   severely they fail to comply what is the extent of the harm that they
+   might cause?
 
-   The open research question will be deciding which exceptions can be
-   tolerated and which are grounds for preventing protocols or
-   algorithms from progressing into full standards.
-
-   To prove the criteria described in the note they should be used to
+   To prove the criteria described in this note they should be used to
    evaluate current and legacy algorithms: we expect to find alignment
    between known implementation pathologies and failed criteria.
    Discrepancies may suggest additional criteria or sharpen our
    understanding of how to decide if a failed criteria is material or
    not.
 
-   The phrase "under adverse conditions" refers to any increase in any
-   congestion signals (loss, delay, marks or reduced queue space or
-   capacity) from any starting state.  For example introducing 1 Mb/s
-   cross traffic to an otherwise ideal 10 Gb/s link is an adverse
-   condition that SHOULD NOT trigger any of the misbehaviors indicated
-   below.
+   Indeed, Reno[Reno] and Cubic[Cubic] are known to fail the criteria
+   presented here, and as a consequence exhibit pathologies including
+   bufferbloat[bufferbloat] and poor scaling[Scaling].
 
-2.  Conventions and Definitions
+3.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -134,26 +140,74 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Tentative list of criteria
+   *Exhaustion*  a network overloaded to the extent that the average
+      delivery rate is below one segment per flow per RTT.
 
-3.1.  Free from regenerative congestion
+   *Material*  failing a criteria in a manner that is likely to cause
+      pathological behaviors under some conditions.
+
+   *Non-Material*  technically failing some criteria, but unimportant,
+      insignificant or otherwise unlikely to cause pathological
+      behaviors.
+
+   *Under adverse conditions*  refers to any changes in behavior when
+      subject to any increase in any congestion signals (loss, delay,
+      marks or reduced queue space or capacity) from any initial state.
+      For example introducing 1 Mb/s cross traffic to an otherwise ideal
+      10 Gb/s link is an adverse condition that SHOULD NOT trigger any
+      of the misbehavior's indicated below.
+
+4.  Tentative list of criteria
+
+4.1.  Free from congestion collapse
+
+   Adverse conditions do not cause increasing overhead, specifically do
+   not cause duplicate data at the receiver.
+
+   Test: for a fixed work load, the overhead must be constant,
+   independent of the network congestions across the entire operating
+   range of the application or network
+
+   If there is packet loss, the retransmits must exactly match the
+   packet losses
+
+   Example of an application that can cause congestion collapse: a
+   download engine that responds to transient network errors or
+   persistent congestion by restarting downloads from the beginning.
+
+4.2.  Free from regenerative congestion
 
    Adverse conditions do not cause additional presented load.
 
-3.2.  Free from congestion collapse
+4.3.  Bound steady state losses
 
-   Adverse conditions do not cause declining goodput / overhead ratio
-
-3.3.  Bound control frequency
-
-   Control frequency scales with 1/rtt but is insensitive to data rate.
-
-3.4.  Bound steady state losses
-
-   Steady state bulk transport should not cause more than 2\% loss over
+   Steady state bulk transport should not cause more than 2% loss over
    any unchanging network.
 
-3.5.  Bound slowstart duration and loss
+   Any transport with some form of selective acknowledgements can easily
+   run at a much higher loss rate.  The real problem is the harm caused
+   to all single packet transactions, including DNS and connection
+   establishment for nearly all protocols and services.  Single packet
+   transactions generally can only use an RTO timer for recovery,
+   typically without any preceding RTT measurement, thus they often take
+   several orders of magnitude more time than any selective
+   acknowledgment based recovery.
+
+   The question at hand is really how much harm do we want to permit
+   transport to inflict on all other protocols (and not transport vs
+   transport).
+
+   For example, are we ok with happy eyeballs getting the wrong answer
+   2% of the time, because the IPv6 connection establishment failed on
+   the first message?
+
+   BTW I consider 2% to be a bit high: 1% or 0.1% would be better,
+   however Reno and Cubic can both easily cause much more loss.
+
+   We need some studies to decide the appropriate value for the final
+   document.
+
+4.4.  Bound slowstart duration and loss
 
    Slowstart into a droptail queue should not cause more than one RTT of
    loss nor cause more than 50% loss for that RTT.  e.g.  Provisional
@@ -161,7 +215,7 @@ Table of Contents
    detected, even before the loss recovery can decide if the missing
    segments are due to reordering or loss.
 
-3.6.  Bound losses on link changes
+4.5.  Bound losses on link changes
 
    Step changes in link properties (RTT, bandwidth or queue size) or
    cross traffic should not cause losses that are larger than the change
@@ -169,13 +223,36 @@ Table of Contents
    loss recovery the transport is not permitted to send more data than
    reported at the receiver.  (Conservative property from PRR.)
 
-3.7.  No unnecessary slowstarts
+4.6.  No unnecessary slowstarts
 
    All application stacks must use connection caching, CC state caching
    or some other mechanism such that application workloads are prevented
    from causing persistent or repeated overlapping slowstarts.
 
-3.8.  Monotonic response
+4.7.  Freedom from starvation
+
+   (need a new strong definition).  Flows below some resource threshold
+   (data rate, window size, ConEx marks, etc) will successfully search
+   upwards, as long as there is either idle capacity or other flows
+   above the same(?) threshold.
+
+4.8.  Bound standing queue
+
+   Do not create steady state standing queues larger than
+   k*minRTT*maxBW, for some prescribed k, to be defined.
+
+4.9.  Maintain queue headroom
+
+   Individual flows do not keep queues pegged at full even if the queues
+   are substantially smaller than minRTT*maxBW.  When there is queue
+   full, CC should reduce its window enough to create some small
+   headroom to prevent locking out new flows
+
+4.10.  Bound control frequency
+
+   Control frequency scales with 1/rtt but is insensitive to data rate.
+
+4.11.  Monotonic response
 
    The CCA should have monotonic response to all congestion signals that
    it responds to (loss, marks, delay, etc) otherwise it will have
@@ -183,38 +260,19 @@ Table of Contents
    would be likely to exhibit stable pathologies such as latecomer
    (dis)advantage.
 
-3.9.  Freedom from starvation
-
-   (need a new strong definition).  Flows below some resource threshold
-   (data rate, window size, ConEx marks, etc) will successfully search
-   upwards, as long as there is either idle capacity or other flows
-   above the same(?) threshold.
-
-3.10.  Bound standing queue
-
-   Do not create steady state standing queues larger than
-   k*minRTT*maxBW, for some prescribed k, to be defined.
-
-3.11.  Maintain queue headroom
-
-   Individual flows do not keep queues pegged at full even if the queues
-   are substantially smaller than minRTT*maxBW.  When there is queue
-   full, CC should reduce its window enough to create some small
-   headroom to prevent locking out new flows
-
-3.12.  Balanced probe size
+4.12.  Balanced probe size
 
    Balance the worst case queue backlog against the need to trigger mode
    shifting in links that batch data.  This should become a global
    (policy) parameter of the Internet, because the queue backlogs force
    jitter on flows trying to do realtime without QoS.
 
-3.13.  Self scaling
+4.13.  Self scaling
 
    at all layers.  If the network is too slow, the application must also
    slow down to avoid "stacking" requests.
 
-4.  Security Considerations
+5.  Security Considerations
 
    TODO Security
 
@@ -227,11 +285,11 @@ Table of Contents
    behaviors that have the potential cause the Internet to be fragile
    under some conditions.
 
-5.  IANA Considerations
+6.  IANA Considerations
 
    This document has no IANA actions.
 
-6.  Normative References
+7.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -241,6 +299,10 @@ Table of Contents
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+Appendix A.  Estimating min RTT
+
+   This is known to be hard@@@
 
 Acknowledgments
 
