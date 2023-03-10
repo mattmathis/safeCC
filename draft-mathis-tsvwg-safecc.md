@@ -58,7 +58,7 @@ Unformatted references appear below many sections.
 # Introduction
 We present criteria for evaluating Congestion Control Algorithms (CCA) for behaviors that have the potential to cause harm to Internet applications or users.
 
-Ideally we would cast these criteria as requirements; however such an effort is doomed to fail because many of them have technical exceptions that are unavoidable in ways that are not important. 
+Ideally we would cast these criteria as requirements; however such an effort is doomed to fail because many of them have technical exceptions that are unavoidable in ways that are not important.
 
 \[Introduce non-material] For an example of this issue see {{noCollapse}}
 
@@ -87,7 +87,7 @@ Indeed, Reno\[rfc5681] and Cubic\[Cubic] are known to fail several the criteria 
 
 # Tentative list of criteria
 
-These are generally in order of declining severity.  Items at the top of the list have the potential to cause large scale internet disruptions if they are widely deployed.  Items at the bottom of the list can cause unexpected or poor performance to the user.  
+These are generally in order of declining severity.  Items at the top of the list have the potential to cause large scale internet disruptions if they are widely deployed.  Items at the bottom of the list can cause unexpected or poor performance to the user.
 
 ## Free from congestion collapse  {#noCollapse}
 
@@ -140,7 +140,7 @@ All application stacks must use connection caching, Congestion Control state cac
 
 \[RFC9040] TCP Control Block Interdependence
 
-draft-kuhn-tsvwg-careful-resume-00 Careful convergence of congestion control from retained state with QUIC 
+draft-kuhn-tsvwg-careful-resume-00 Careful convergence of congestion control from retained state with QUIC
 
 ## Freedom from starvation {#noStarvation}
 
@@ -202,13 +202,13 @@ This document has no IANA actions.
 
 It has been shown that all distributed algorithms to measure minimum RTTs in packet switched mesh networks are subject to failures caused by the inability to distinguish between true minimum path delays and delays that have been inflated by standing queues caused by other flows.
 
-This failure mechanism was shown in a formal proof \[noPower] and 
+This failure mechanism was shown in a formal proof \[noPower] and
 demonstrated in connection with Vegas TCP \[vegas]\[VegasFailure].
 
 BBR \[BBR] uses a distributed algorithm designed to protect the network from one of the more easily observed failure cases, where multiple long running flows "stack" standing queues on queues created by prior flows.
 BBR attempts to explicitly synchronize minimum RTT measurements by having all flows reduce their sending rates for approximately 1 RTT every 10 seconds.   The measurements are synchronized by the measurements themselves.  When a flow observes a new minimum RTT sample, it set a 10 second timer to schedule its next measurement.  If flows are indeed causing "stacked" queues, they are likely to get a new minimum RTT from some other flow's measurement, which will cause synchronized measurements on the next cycle.
 
-It is not known if the minimum RTT algorithm used in BBR is sufficient to protect the Internet from all failure cases.  We suspect that the BBR algorithm does not fully mitigate the problem as outlined in the proof \[noPower].   
+It is not known if the minimum RTT algorithm used in BBR is sufficient to protect the Internet from all failure cases.  We suspect that the BBR algorithm does not fully mitigate the problem as outlined in the proof \[noPower].
 
 However given the transactional nature of modern Internet workloads each flow has frequent idle, which helps other flows observe accurate minimum RTTs.
 
