@@ -1052,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mathis</td>
-<td class="center">Expires 11 September 2023</td>
+<td class="center">Expires 12 September 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-mathis-tsvwg-safecc-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-03-10" class="published">10 March 2023</time>
+<time datetime="2023-03-11" class="published">11 March 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Experimental</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-09-11">11 September 2023</time></dd>
+<dd class="expires"><time datetime="2023-09-12">12 September 2023</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1120,7 +1120,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 11 September 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 September 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1195,7 +1195,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.4.2.11.1"><a href="#section-4.11" class="auto internal xref">4.11</a>. <a href="#name-monotonic-response" class="internal xref">Monotonic response</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.12">
-                <p id="section-toc.1-1.4.2.12.1"><a href="#section-4.12" class="auto internal xref">4.12</a>. <a href="#name-balanced-probe-sizeprobesiz" class="internal xref">Balanced probe size{#probeSize}</a></p>
+                <p id="section-toc.1-1.4.2.12.1"><a href="#section-4.12" class="auto internal xref">4.12</a>. <a href="#name-balanced-probe-size" class="internal xref">Balanced probe size</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.13">
                 <p id="section-toc.1-1.4.2.13.1"><a href="#section-4.13" class="auto internal xref">4.13</a>. <a href="#name-self-scaling" class="internal xref">Self scaling</a></p>
@@ -1235,7 +1235,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-1-4">[Remove this section before publication]<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="introduction">
+<div id="intro">
 <section id="section-2">
       <h2 id="name-introduction">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
@@ -1248,7 +1248,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-2-6">Indeed, Reno[rfc5681] and Cubic[Cubic] are known to fail several the criteria presented here, and as a consequence exhibit pathologies including bufferbloat[bufferbloat], [starvation] and poor scaling[Scaling].<a href="#section-2-6" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="conventions-and-definitions">
+<div id="definitions">
 <section id="section-3">
       <h2 id="name-conventions-and-definitions">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
@@ -1281,7 +1281,7 @@ appear in all capitals, as shown here.<a href="#section-3-1" class="pilcrow">¶<
 </dl>
 </section>
 </div>
-<div id="tentative-list-of-criteria">
+<div id="criteria">
 <section id="section-4">
       <h2 id="name-tentative-list-of-criteria">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-tentative-list-of-criteria" class="section-name selfRef">Tentative list of criteria</a>
@@ -1307,7 +1307,7 @@ appear in all capitals, as shown here.<a href="#section-3-1" class="pilcrow">¶<
 <p id="section-4.2-1">Adverse conditions must not cause additional presented load.  Any congestion indication should cause transmissions to be later than they would have been without the congestion.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">This criteria is well understood at the transport layer: all congestion signals must cause the sender to delay future transmissions, and at least slightly reduce their average sending rate.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <p id="section-4.2-3">This criteria is not well understood by application designers.  Many applications open multiple transport connections and use aggressive retry strategies with insufficiently adaptive timers (see <a href="#selfScaling" class="auto internal xref">Section 4.13</a>).  This flawed strategy is generally an attempt to maintain constant performance without reacting adverse network conditions.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
-<p id="section-4.2-4">Some past(?) streaming video application are known to request additional video chunks on alternate connections without regard to the delivery status of chunks already in progress.  Such a strategy often yields better performance when the application is a minority of the traffic, but causes massive regenerative congestion and eventual collapse in a large scale deployment.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+<p id="section-4.2-4">Some (past?) streaming video application are known to request additional video chunks on alternate connections without regard to the delivery status of chunks already in progress.  Such a strategy often yields better performance when the application is a minority of the traffic, but can cause massive regenerative congestion and eventual collapse in a large scale deployment.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="boundLosses">
@@ -1364,7 +1364,7 @@ cause more than one RTT of loss nor cause more than 50% loss for that RTT.   Pro
         <h3 id="name-bound-standing-queue">
 <a href="#section-4.8" class="section-number selfRef">4.8. </a><a href="#name-bound-standing-queue" class="section-name selfRef">Bound standing queue</a>
         </h3>
-<p id="section-4.8-1">In the absence of losses or ECN, bulk flow do not cause steady state standing queues larger than k*minRTT*maxBW, for some predefined k, specific to the CCA.   K must be smaller than 2 (maximum RTT would be 3*minRTT)<a href="#section-4.8-1" class="pilcrow">¶</a></p>
+<p id="section-4.8-1">In the absence of losses or ECN, bulk flow should not cause steady state standing queues larger than k*minRTT*maxBW, for some predefined k, specific to the CCA.   K must be smaller than 2 (maximum RTT would be 3*minRTT)<a href="#section-4.8-1" class="pilcrow">¶</a></p>
 <p id="section-4.8-2">Note that this criteria implies that ECN based CCAs must also have some mechanism to limit data inflight, and that all CCAs must address the minimum RTT estimator problem described in <a href="#minRTT" class="auto internal xref">Appendix A</a>.<a href="#section-4.8-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1373,7 +1373,7 @@ cause more than one RTT of loss nor cause more than 50% loss for that RTT.   Pro
         <h3 id="name-bound-control-frequency">
 <a href="#section-4.9" class="section-number selfRef">4.9. </a><a href="#name-bound-control-frequency" class="section-name selfRef">Bound control frequency</a>
         </h3>
-<p id="section-4.9-1">Control frequency scales with 1/rtt but is insensitive to data rate.   This property is defined as "scalable" in other sources.<a href="#section-4.9-1" class="pilcrow">¶</a></p>
+<p id="section-4.9-1">Control frequency scales with 1/rtt but is insensitive to data rate.   This property is referred to as "scalable" in other sources.<a href="#section-4.9-1" class="pilcrow">¶</a></p>
 <p id="section-4.9-2">[RFC9330] Low Latency, Low Loss, and Scalable Throughput (L4S) Internet Service: Architecture<a href="#section-4.9-2" class="pilcrow">¶</a></p>
 <p id="section-4.9-3">Robert Morris Scalable TCP Congestion Control<a href="#section-4.9-3" class="pilcrow">¶</a></p>
 </section>
@@ -1384,7 +1384,7 @@ cause more than one RTT of loss nor cause more than 50% loss for that RTT.   Pro
 <a href="#section-4.10" class="section-number selfRef">4.10. </a><a href="#name-maintain-queue-headroom" class="section-name selfRef">Maintain queue headroom</a>
         </h3>
 <p id="section-4.10-1">Individual flows do not persistently maintain full queues even if the queues are smaller than minRTT*maxBW.  When there is queue full, Congestion Control should reduce its window enough to create some small headroom to prevent locking out new flows.<a href="#section-4.10-1" class="pilcrow">¶</a></p>
-<p id="section-4.10-2">Ideally this criteria would also be applied to flow aggregates, however significant additional research is needed.   @@@@<a href="#section-4.10-2" class="pilcrow">¶</a></p>
+<p id="section-4.10-2">Ideally this criteria would also be applied to flow aggregates, however significant additional research would be needed.   @@@@<a href="#section-4.10-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="monotonic">
@@ -1395,12 +1395,15 @@ cause more than one RTT of loss nor cause more than 50% loss for that RTT.   Pro
 <p id="section-4.11-1">The CCA should have monotonic response to all congestion signals that it responds to (loss, marks, delay, etc) otherwise it will have multiple stable operating points for the same network conditions.  It would be likely to exhibit stable pathologies such as latecomer (dis)advantage.<a href="#section-4.11-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="balanced-probe-sizeprobesize">
+<div id="probeSize">
 <section id="section-4.12">
-        <h3 id="name-balanced-probe-sizeprobesiz">
-<a href="#section-4.12" class="section-number selfRef">4.12. </a><a href="#name-balanced-probe-sizeprobesiz" class="section-name selfRef">Balanced probe size{#probeSize}</a>
+        <h3 id="name-balanced-probe-size">
+<a href="#section-4.12" class="section-number selfRef">4.12. </a><a href="#name-balanced-probe-size" class="section-name selfRef">Balanced probe size</a>
         </h3>
-<p id="section-4.12-1">Balance the worst case queue backlog against the need to trigger mode shifting in links that batch data.   This should become a global (policy) parameter of the Internet, because the queue backlogs force jitter on flows trying to do realtime without QoS.<a href="#section-4.12-1" class="pilcrow">¶</a></p>
+<p id="section-4.12-1">Balance the worst case queue backlog against the need to trigger mode shifting in links that use queue backlog as a trigger.<a href="#section-4.12-1" class="pilcrow">¶</a></p>
+<p id="section-4.12-2">Self clock transport preserves ACK modulation from one RTT to the next.  Many half duplex link layers implicitly use bursts preserved by transport self clock as part of optimizing their channel allocation algorithms.    Batching or decimating ACKs on the return path can cause relatively large bursts of packets to traverse the entire forward path from the sender to the receiver, potentially causing jitter to other flows sharing the same queues.<a href="#section-4.12-2" class="pilcrow">¶</a></p>
+<p id="section-4.12-3">Pacing can interact poorly with link layers that rely on queue backlogs to trigger transmissions or scheduling mode changes.  These types of link scheduling algorithms are pervasive in wireless and other shared media where channel arbitration is relatively expensive.  Indeed, the initial design of BBR's bandwidth probe phase was inspired by the need to trigger mode changes in many wireless networks.<a href="#section-4.12-3" class="pilcrow">¶</a></p>
+<p id="section-4.12-4">@@@@ More work needed here.<a href="#section-4.12-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="selfScaling">
@@ -1409,13 +1412,13 @@ cause more than one RTT of loss nor cause more than 50% loss for that RTT.   Pro
 <a href="#section-4.13" class="section-number selfRef">4.13. </a><a href="#name-self-scaling" class="section-name selfRef">Self scaling</a>
         </h3>
 <p id="section-4.13-1">All protocol layers must be self scaling.  If the network is too slow, the application must also slow down to avoid "stacking" requests.<a href="#section-4.13-1" class="pilcrow">¶</a></p>
-<p id="section-4.13-2">Specifically all application timers that cancel or restart lower layers transactions must not start overlapping transactions and must use an RTO style retry algorithm based on observed transaction times, including exponential backoff on repeated failures.  Alternatively an application might refuse to run on excessive failures.<a href="#section-4.13-2" class="pilcrow">¶</a></p>
-<p id="section-4.13-3">This criteria must be applied recursively all the way up the protocol stack for all application that are unattended (e.g. chron jobs and IOT)<a href="#section-4.13-3" class="pilcrow">¶</a></p>
+<p id="section-4.13-2">Specifically all application timers that cancel or restart lower layers transactions must not start overlapping transactions and must use an RTO style retry algorithm based on observed transaction times, including exponential backoff on repeated failures.  Alternatively an application might refuse to run after excessive failures.<a href="#section-4.13-2" class="pilcrow">¶</a></p>
+<p id="section-4.13-3">This criteria must be applied recursively all the way up the protocol stack for all applications that might be unattended (e.g. cron jobs and IOT devices).<a href="#section-4.13-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
-<div id="security-considerations">
+<div id="security">
 <section id="section-5">
       <h2 id="name-security-considerations">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
@@ -1429,7 +1432,7 @@ cause more than one RTT of loss nor cause more than 50% loss for that RTT.   Pro
       <h2 id="name-iana-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-6-1">This document has no IANA actions.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">This document has no IANA actions. {#iana}<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <section id="section-7">

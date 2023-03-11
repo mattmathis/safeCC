@@ -4,8 +4,8 @@
 
 WG Working Group                                               M. Mathis
 Internet-Draft                                                      MLab
-Intended status: Experimental                              10 March 2023
-Expires: 11 September 2023
+Intended status: Experimental                              11 March 2023
+Expires: 12 September 2023
 
 
                         Safe Congestion Control
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 September 2023.
+   This Internet-Draft will expire on 12 September 2023.
 
 Copyright Notice
 
@@ -85,7 +85,7 @@ Table of Contents
      4.9.  Bound control frequency
      4.10. Maintain queue headroom
      4.11. Monotonic response
-     4.12. Balanced probe size{#probeSize}
+     4.12. Balanced probe size
      4.13. Self scaling
    5.  Security Considerations
    6.  IANA Considerations
@@ -212,12 +212,12 @@ Table of Contents
    maintain constant performance without reacting adverse network
    conditions.
 
-   Some past(?) streaming video application are known to request
+   Some (past?) streaming video application are known to request
    additional video chunks on alternate connections without regard to
    the delivery status of chunks already in progress.  Such a strategy
    often yields better performance when the application is a minority of
-   the traffic, but causes massive regenerative congestion and eventual
-   collapse in a large scale deployment.
+   the traffic, but can cause massive regenerative congestion and
+   eventual collapse in a large scale deployment.
 
 4.3.  Bound steady state losses
 
@@ -289,10 +289,10 @@ Table of Contents
 
 4.8.  Bound standing queue
 
-   In the absence of losses or ECN, bulk flow do not cause steady state
-   standing queues larger than k*minRTT*maxBW, for some predefined k,
-   specific to the CCA.  K must be smaller than 2 (maximum RTT would be
-   3*minRTT)
+   In the absence of losses or ECN, bulk flow should not cause steady
+   state standing queues larger than k*minRTT*maxBW, for some predefined
+   k, specific to the CCA.  K must be smaller than 2 (maximum RTT would
+   be 3*minRTT)
 
    Note that this criteria implies that ECN based CCAs must also have
    some mechanism to limit data inflight, and that all CCAs must address
@@ -301,7 +301,7 @@ Table of Contents
 4.9.  Bound control frequency
 
    Control frequency scales with 1/rtt but is insensitive to data rate.
-   This property is defined as "scalable" in other sources.
+   This property is referred to as "scalable" in other sources.
 
    [RFC9330] Low Latency, Low Loss, and Scalable Throughput (L4S)
    Internet Service: Architecture
@@ -316,7 +316,7 @@ Table of Contents
    small headroom to prevent locking out new flows.
 
    Ideally this criteria would also be applied to flow aggregates,
-   however significant additional research is needed.  @@@@
+   however significant additional research would be needed.  @@@@
 
 4.11.  Monotonic response
 
@@ -326,12 +326,28 @@ Table of Contents
    would be likely to exhibit stable pathologies such as latecomer
    (dis)advantage.
 
-4.12.  Balanced probe size{#probeSize}
+4.12.  Balanced probe size
 
    Balance the worst case queue backlog against the need to trigger mode
-   shifting in links that batch data.  This should become a global
-   (policy) parameter of the Internet, because the queue backlogs force
-   jitter on flows trying to do realtime without QoS.
+   shifting in links that use queue backlog as a trigger.
+
+   Self clock transport preserves ACK modulation from one RTT to the
+   next.  Many half duplex link layers implicitly use bursts preserved
+   by transport self clock as part of optimizing their channel
+   allocation algorithms.  Batching or decimating ACKs on the return
+   path can cause relatively large bursts of packets to traverse the
+   entire forward path from the sender to the receiver, potentially
+   causing jitter to other flows sharing the same queues.
+
+   Pacing can interact poorly with link layers that rely on queue
+   backlogs to trigger transmissions or scheduling mode changes.  These
+   types of link scheduling algorithms are pervasive in wireless and
+   other shared media where channel arbitration is relatively expensive.
+   Indeed, the initial design of BBR's bandwidth probe phase was
+   inspired by the need to trigger mode changes in many wireless
+   networks.
+
+   @@@@ More work needed here.
 
 4.13.  Self scaling
 
@@ -343,11 +359,11 @@ Table of Contents
    layers transactions must not start overlapping transactions and must
    use an RTO style retry algorithm based on observed transaction times,
    including exponential backoff on repeated failures.  Alternatively an
-   application might refuse to run on excessive failures.
+   application might refuse to run after excessive failures.
 
    This criteria must be applied recursively all the way up the protocol
-   stack for all application that are unattended (e.g. chron jobs and
-   IOT)
+   stack for all applications that might be unattended (e.g. cron jobs
+   and IOT devices).
 
 5.  Security Considerations
 
@@ -362,7 +378,7 @@ Table of Contents
 
 6.  IANA Considerations
 
-   This document has no IANA actions.
+   This document has no IANA actions. {#iana}
 
 7.  Normative References
 
