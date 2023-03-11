@@ -55,7 +55,7 @@ Unformatted references appear below many sections.
 
 \[Remove this section before publication]
 
-# Introduction
+# Introduction {#intro}
 We present criteria for evaluating Congestion Control Algorithms (CCA) for behaviors that have the potential to cause harm to Internet applications or users.
 
 Ideally we would cast these criteria as requirements; however such an effort is doomed to fail because many of them have technical exceptions that are unavoidable in ways that are not important.
@@ -69,7 +69,7 @@ To prove the criteria proposed in this note they should be used to evaluate curr
 Indeed, Reno\[rfc5681] and Cubic\[Cubic] are known to fail several the criteria presented here, and as a consequence exhibit pathologies including bufferbloat\[bufferbloat], \[starvation] and poor scaling\[Scaling].
 
 
-# Conventions and Definitions
+# Conventions and Definitions {#definitions}
 
 {::boilerplate bcp14-tagged}
 
@@ -85,7 +85,7 @@ Indeed, Reno\[rfc5681] and Cubic\[Cubic] are known to fail several the criteria 
 **Under adverse conditions**
 : refers to any increase in any congestion signals (loss, delay, marks or reduced queue space or capacity, etc) from any initial state.   For example introducing 1 Mb/s cross traffic to an otherwise ideal 10 Gb/s link is an adverse condition that should not trigger any of the misbehavior's described below.
 
-# Tentative list of criteria
+# Tentative list of criteria {#criteria}
 
 These are generally in order of declining severity.  Items at the top of the list have the potential to cause large scale internet disruptions if they are widely deployed.  Items at the bottom of the list can cause unexpected or poor performance to the user.
 
@@ -109,7 +109,7 @@ This criteria is well understood at the transport layer: all congestion signals 
 
 This criteria is not well understood by application designers.  Many applications open multiple transport connections and use aggressive retry strategies with insufficiently adaptive timers (see {{selfScaling}}).  This flawed strategy is generally an attempt to maintain constant performance without reacting adverse network conditions.
 
-Some past(?) streaming video application are known to request additional video chunks on alternate connections without regard to the delivery status of chunks already in progress.  Such a strategy often yields better performance when the application is a minority of the traffic, but causes massive regenerative congestion and eventual collapse in a large scale deployment.
+Some (past?) streaming video application are known to request additional video chunks on alternate connections without regard to the delivery status of chunks already in progress.  Such a strategy often yields better performance when the application is a minority of the traffic, but can cause massive regenerative congestion and eventual collapse in a large scale deployment.
 
 ## Bound steady state losses {#boundLosses}
 
@@ -150,13 +150,13 @@ Flows below some resource threshold (data rate, window size, ConEx marks, etc) w
 
 ## Bound standing queue {#boundQueue}
 
-In the absence of losses or ECN, bulk flow do not cause steady state standing queues larger than k\*minRTT\*maxBW, for some predefined k, specific to the CCA.   K must be smaller than 2 (maximum RTT would be 3*minRTT)
+In the absence of losses or ECN, bulk flow should not cause steady state standing queues larger than k\*minRTT\*maxBW, for some predefined k, specific to the CCA.   K must be smaller than 2 (maximum RTT would be 3*minRTT)
 
 Note that this criteria implies that ECN based CCAs must also have some mechanism to limit data inflight, and that all CCAs must address the minimum RTT estimator problem described in {{minRTT}}.
 
 ## Bound control frequency {#boundFrequency}
 
-Control frequency scales with 1/rtt but is insensitive to data rate.   This property is defined as "scalable" in other sources.
+Control frequency scales with 1/rtt but is insensitive to data rate.   This property is referred to as "scalable" in other sources.
 
 \[RFC9330] Low Latency, Low Loss, and Scalable Throughput (L4S) Internet Service: Architecture
 
@@ -166,26 +166,32 @@ Robert Morris Scalable TCP Congestion Control
 
 Individual flows do not persistently maintain full queues even if the queues are smaller than minRTT\*maxBW.  When there is queue full, Congestion Control should reduce its window enough to create some small headroom to prevent locking out new flows.
 
-Ideally this criteria would also be applied to flow aggregates, however significant additional research is needed.   @@@@
+Ideally this criteria would also be applied to flow aggregates, however significant additional research would be needed.   @@@@
 
 ## Monotonic response {#monotonic}
 
 The CCA should have monotonic response to all congestion signals that it responds to (loss, marks, delay, etc) otherwise it will have multiple stable operating points for the same network conditions.  It would be likely to exhibit stable pathologies such as latecomer (dis)advantage.
 
-## Balanced probe size{#probeSize}
+## Balanced probe size {#probeSize}
 
-Balance the worst case queue backlog against the need to trigger mode shifting in links that batch data.   This should become a global (policy) parameter of the Internet, because the queue backlogs force jitter on flows trying to do realtime without QoS.
+Balance the worst case queue backlog against the need to trigger mode shifting in links that use queue backlog as a trigger.
+
+Self clock transport preserves ACK modulation from one RTT to the next.  Many half duplex link layers implicitly use bursts preserved by transport self clock as part of optimizing their channel allocation algorithms.    Batching or decimating ACKs on the return path can cause relatively large bursts of packets to traverse the entire forward path from the sender to the receiver, potentially causing jitter to other flows sharing the same queues.
+
+Pacing can interact poorly with link layers that rely on queue backlogs to trigger transmissions or scheduling mode changes.  These types of link scheduling algorithms are pervasive in wireless and other shared media where channel arbitration is relatively expensive.  Indeed, the initial design of BBR's bandwidth probe phase was inspired by the need to trigger mode changes in many wireless networks.
+
+@@@@ More work needed here.
+
 
 ## Self scaling {#selfScaling}
 
 All protocol layers must be self scaling.  If the network is too slow, the application must also slow down to avoid "stacking" requests.
 
-Specifically all application timers that cancel or restart lower layers transactions must not start overlapping transactions and must use an RTO style retry algorithm based on observed transaction times, including exponential backoff on repeated failures.  Alternatively an application might refuse to run on excessive failures.
+Specifically all application timers that cancel or restart lower layers transactions must not start overlapping transactions and must use an RTO style retry algorithm based on observed transaction times, including exponential backoff on repeated failures.  Alternatively an application might refuse to run after excessive failures.
 
-This criteria must be applied recursively all the way up the protocol stack for all application that are unattended (e.g. chron jobs and IOT)
+This criteria must be applied recursively all the way up the protocol stack for all applications that might be unattended (e.g. cron jobs and IOT devices).
 
-
-# Security Considerations
+# Security Considerations {#security}
 
 This document provides evaluation criteria for Congestion Control and other implementations or algorithms that might be deployed on the internet.   It has no direct security considerations of its own.
 
@@ -193,7 +199,7 @@ Over the long haul it is expected to increase the overall robustness of the Inte
 
 # IANA Considerations
 
-This document has no IANA actions.
+This document has no IANA actions. {#iana}
 
 
 --- back
