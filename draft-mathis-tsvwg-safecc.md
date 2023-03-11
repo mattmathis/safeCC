@@ -197,10 +197,9 @@ This document provides evaluation criteria for Congestion Control and other impl
 
 Over the long haul it is expected to increase the overall robustness of the Internet by helping to eliminate certain pathological behaviors that have the potential cause the Internet to be fragile under some conditions.
 
-# IANA Considerations
+# IANA Considerations {#iana}
 
-This document has no IANA actions. {#iana}
-
+This document has no IANA actions.
 
 --- back
 
