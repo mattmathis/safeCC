@@ -1,0 +1,272 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-03-14T01:04:59.698466+00:00",
+  "repo": "mattmathis/safeCC",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 2,
+      "id": "I_kwDOIo9j285dbj8f",
+      "title": "Address short queues and paced vs self clocked",
+      "url": "https://github.com/mattmathis/safeCC/issues/2",
+      "state": "OPEN",
+      "author": "mattmathis",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "This is more about efficiency than safety",
+      "createdAt": "2023-02-02T07:47:39Z",
+      "updatedAt": "2023-02-02T07:47:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOIo9j285dbmke",
+      "title": "Introduce capacity allocation as goal",
+      "url": "https://github.com/mattmathis/safeCC/issues/3",
+      "state": "OPEN",
+      "author": "mattmathis",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Need to make a distinction between network devices that are statistically uniform per packet vs devices  that apply congestion signals (drops, marks or delay) differently to different flows or ensembles of flows.",
+      "createdAt": "2023-02-02T07:55:35Z",
+      "updatedAt": "2023-02-03T04:34:44Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOIo9j285diBni",
+      "title": "Can \"Maintain queue headroom\" be generalized for the multiple flow case?",
+      "url": "https://github.com/mattmathis/safeCC/issues/5",
+      "state": "OPEN",
+      "author": "mattmathis",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "(Via private communication Neal Cardwell)\r\n",
+      "createdAt": "2023-02-03T04:32:36Z",
+      "updatedAt": "2023-02-03T04:32:36Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOIo9j285IxoyS",
+      "title": "Set up the initial draft",
+      "url": "https://github.com/mattmathis/safeCC/pull/1",
+      "state": "MERGED",
+      "author": "mattmathis",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "mattmathis"
+      ],
+      "labels": [],
+      "body": "Rename, paste prior text, sketch missing sections and the README\r\n",
+      "createdAt": "2023-01-30T03:48:56Z",
+      "updatedAt": "2023-02-03T05:04:05Z",
+      "baseRepository": "mattmathis/safeCC",
+      "baseRefName": "main",
+      "baseRefOid": "a3a8bcdc0cc3ba7c544c06fbaa1b3ce48e47705a",
+      "headRepository": "mattmathis/safeCC",
+      "headRefName": "initialize",
+      "headRefOid": "487d5fbd32c58737489c13953c62db0263948ba4",
+      "closedAt": "2023-01-30T14:35:28Z",
+      "mergedAt": "2023-01-30T14:35:28Z",
+      "mergedBy": "mattmathis",
+      "mergeCommit": {
+        "oid": "7f6da86dd8da5ae863e6643919e9b64fb2f5bd85"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOIo9j285JKRD8",
+      "title": "Setup repository for draft-mathis-tsvwg-safecc",
+      "url": "https://github.com/mattmathis/safeCC/pull/4",
+      "state": "MERGED",
+      "author": "mattmathis",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "- Install template from https://github.com/martinthomson/i-d-template\r\n- Edits from first review after first formatting",
+      "createdAt": "2023-02-03T01:09:16Z",
+      "updatedAt": "2023-02-03T05:04:03Z",
+      "baseRepository": "mattmathis/safeCC",
+      "baseRefName": "main",
+      "baseRefOid": "7f6da86dd8da5ae863e6643919e9b64fb2f5bd85",
+      "headRepository": "mattmathis/safeCC",
+      "headRefName": "stage00",
+      "headRefOid": "0605760a07696d2a366f63865083f9bda3b61c3c",
+      "closedAt": "2023-02-03T01:11:38Z",
+      "mergedAt": "2023-02-03T01:11:38Z",
+      "mergedBy": "mattmathis",
+      "mergeCommit": {
+        "oid": "9a62ab7bdf9e9e27f3df6ef5a0224ca8539e7a5c"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOIo9j285JLK8Z",
+      "title": "Correct URLs",
+      "url": "https://github.com/mattmathis/safeCC/pull/6",
+      "state": "MERGED",
+      "author": "mattmathis",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-02-03T06:40:12Z",
+      "updatedAt": "2023-03-03T07:34:20Z",
+      "baseRepository": "mattmathis/safeCC",
+      "baseRefName": "main",
+      "baseRefOid": "9a62ab7bdf9e9e27f3df6ef5a0224ca8539e7a5c",
+      "headRepository": "mattmathis/safeCC",
+      "headRefName": "stage01",
+      "headRefOid": "a89d7f36c5a062112405a635a8c5b82aca4a5cd1",
+      "closedAt": "2023-02-03T06:43:27Z",
+      "mergedAt": "2023-02-03T06:43:27Z",
+      "mergedBy": "mattmathis",
+      "mergeCommit": {
+        "oid": "bd43dc5690e4c29416b41837dc853efc4d6dd15b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOIo9j285KoYzP",
+      "title": "Change list of bullets into sections, test build automation",
+      "url": "https://github.com/mattmathis/safeCC/pull/7",
+      "state": "MERGED",
+      "author": "mattmathis",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-02-23T18:15:15Z",
+      "updatedAt": "2023-03-12T15:12:45Z",
+      "baseRepository": "mattmathis/safeCC",
+      "baseRefName": "main",
+      "baseRefOid": "bd43dc5690e4c29416b41837dc853efc4d6dd15b",
+      "headRepository": "mattmathis/safeCC",
+      "headRefName": "rev01a",
+      "headRefOid": "c9d20284102cbaeb9795f8b8541c81b93a0d04ed",
+      "closedAt": "2023-03-11T06:01:39Z",
+      "mergedAt": "2023-03-11T06:01:38Z",
+      "mergedBy": "mattmathis",
+      "mergeCommit": {
+        "oid": "c22031e376b1dbf43d616132a03a421b3f0584d3"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOIo9j285L0LAJ",
+      "title": "Typo",
+      "url": "https://github.com/mattmathis/safeCC/pull/8",
+      "state": "CLOSED",
+      "author": "mattmathis",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Trying to finalize -01",
+      "createdAt": "2023-03-11T06:19:16Z",
+      "updatedAt": "2023-03-11T06:53:08Z",
+      "baseRepository": "mattmathis/safeCC",
+      "baseRefName": "main",
+      "baseRefOid": "c22031e376b1dbf43d616132a03a421b3f0584d3",
+      "headRepository": "mattmathis/safeCC",
+      "headRefName": "rev01b",
+      "headRefOid": "31bcdf7637e8fbda68570e8cc316c86c67b6fd31",
+      "closedAt": "2023-03-11T06:53:07Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOIo9j285L0Lyj",
+      "title": "typo",
+      "url": "https://github.com/mattmathis/safeCC/pull/9",
+      "state": "MERGED",
+      "author": "mattmathis",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-11T06:37:01Z",
+      "updatedAt": "2023-03-12T15:12:42Z",
+      "baseRepository": "mattmathis/safeCC",
+      "baseRefName": "main",
+      "baseRefOid": "c22031e376b1dbf43d616132a03a421b3f0584d3",
+      "headRepository": "mattmathis/safeCC",
+      "headRefName": "rev01c",
+      "headRefOid": "3cfca3565d5170dad066b7fe4870cb9da66a3130",
+      "closedAt": "2023-03-11T06:38:20Z",
+      "mergedAt": "2023-03-11T06:38:20Z",
+      "mergedBy": "mattmathis",
+      "mergeCommit": {
+        "oid": "8a4046c881fb60f537c940292ab59506f40227b5"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
