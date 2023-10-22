@@ -2,14 +2,14 @@
 
 
 
-WG Working Group                                               M. Mathis
-Internet-Draft                                                      MLab
-Intended status: Experimental                              11 March 2023
-Expires: 12 September 2023
+Congetion Control Working Group                                M. Mathis
+Internet-Draft                                                 Freelance
+Intended status: Experimental                            22 October 2023
+Expires: 24 April 2024
 
 
                         Safe Congestion Control
-                    draft-mathis-tsvwg-safecc-latest
+                    draft-mathis-ccwg-safecc-latest
 
 Abstract
 
@@ -27,12 +27,12 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    Status information for this document may be found at
-   https://datatracker.ietf.org/doc/draft-mathis-tsvwg-safecc/.
+   https://datatracker.ietf.org/doc/draft-mathis-ccwg-safecc/.
 
-   Discussion of this document takes place on the TSVWG Working Group
-   mailing list (mailto:tsvwg@ietf.org), which is archived at
-   https://mailarchive.ietf.org/arch/browse/tsvwg/.  Subscribe at
-   https://www.ietf.org/mailman/listinfo/tsvwg/.
+   Discussion of this document takes place on the CCWG Working Group
+   mailing list (mailto:ccwg@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/ccwg/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/ccwg/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/mattmathis/safeCC/.
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2023.
+   This Internet-Draft will expire on 24 April 2024.
 
 Copyright Notice
 
@@ -378,7 +378,7 @@ Table of Contents
 
 6.  IANA Considerations
 
-   This document has no IANA actions. {#iana}
+   This document has no IANA actions.
 
 7.  Normative References
 
@@ -409,10 +409,11 @@ Appendix A.  Estimating the minimum RTT
    measurements by having all flows reduce their sending rates for
    approximately 1 RTT every 10 seconds.  The measurements are
    synchronized by the measurements themselves.  When a flow observes a
-   new minimum RTT sample, it set a 10 second timer to schedule its next
-   measurement.  If flows are indeed causing "stacked" queues, they are
-   likely to get a new minimum RTT from some other flow's measurement,
-   which will cause synchronized measurements on the next cycle.
+   new minimum RTT sample, it sets a 10 second timer to schedule its
+   next measurement.  If flows are indeed causing "stacked" queues, they
+   are likely to get a new minimum RTT from some other flow's
+   measurement, which will cause synchronized measurements on the next
+   cycle.
 
    It is not known if the minimum RTT algorithm used in BBR is
    sufficient to protect the Internet from all failure cases.  We
@@ -454,5 +455,5 @@ Author's Address
 
    Matt Mathis
    Freelance, Measurement Lab
-   Email: mattmathis@measurementlab.net
+   Email: ietf@mattmathis.net
    URI:   https://mattmathis.net/
