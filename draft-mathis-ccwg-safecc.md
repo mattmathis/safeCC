@@ -2,25 +2,25 @@
 
 title: Safe Congestion Control
 abbrev: Safe CC
-docname: draft-mathis-tsvwg-safecc-latest
+docname: draft-mathis-ccwg-safecc-latest
 date: {DATE}
 category: exp
 submissiontype: IETF
 ipr: trust200902
 area: Transport
-workgroup: tsvwg
+workgroup: ccwg
 
 number:
 
 consensus: true
 v: 3
 area: AREA
-workgroup: WG Working Group
+workgroup: Congetion Control Working Group
 keyword:
  - congestion control
 venue:
-  group: TSVWG
-  mail: tsvwg@ietf.org
+  group: CCWG
+  mail: ccwg@ietf.org
   github: mattmathis/safeCC/
 
 author:
@@ -28,8 +28,8 @@ author:
  -
     fullname: Matt Mathis
     organization: Freelance, Measurement Lab
-    abbrev: MLab
-    email: mattmathis@measurementlab.net
+    abbrev: Freelance
+    email: ietf@mattmathis.net
     uri: "https://mattmathis.net/"
 
 normative:
@@ -211,7 +211,7 @@ This failure mechanism was shown in a formal proof \[noPower] and
 demonstrated in connection with Vegas TCP \[vegas]\[VegasFailure].
 
 BBR \[BBR] uses a distributed algorithm designed to protect the network from one of the more easily observed failure cases, where multiple long running flows "stack" standing queues on queues created by prior flows.
-BBR attempts to explicitly synchronize minimum RTT measurements by having all flows reduce their sending rates for approximately 1 RTT every 10 seconds.   The measurements are synchronized by the measurements themselves.  When a flow observes a new minimum RTT sample, it set a 10 second timer to schedule its next measurement.  If flows are indeed causing "stacked" queues, they are likely to get a new minimum RTT from some other flow's measurement, which will cause synchronized measurements on the next cycle.
+BBR attempts to explicitly synchronize minimum RTT measurements by having all flows reduce their sending rates for approximately 1 RTT every 10 seconds.   The measurements are synchronized by the measurements themselves.  When a flow observes a new minimum RTT sample, it sets a 10 second timer to schedule its next measurement.  If flows are indeed causing "stacked" queues, they are likely to get a new minimum RTT from some other flow's measurement, which will cause synchronized measurements on the next cycle.
 
 It is not known if the minimum RTT algorithm used in BBR is sufficient to protect the Internet from all failure cases.  We suspect that the BBR algorithm does not fully mitigate the problem as outlined in the proof \[noPower].
 
