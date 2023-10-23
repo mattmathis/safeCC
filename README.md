@@ -2,10 +2,10 @@
 
 This is the working area for the individual Internet-Draft, "Safe Congestion Control".
 
-* [Editor's Copy](https://mattmathis.github.io/safeCC/#go.draft-mathis-tsvwg-safecc.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-mathis-tsvwg-safecc)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-mathis-tsvwg-safecc)
-* [Compare Editor's Copy to Individual Draft](https://mattmathis.github.io/safeCC/#go.draft-mathis-tsvwg-safecc.diff)
+* [Editor's Copy](https://mattmathis.github.io/safeCC/#go.draft-mathis-ccwg-safecc.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-mathis-ccwg-safecc)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-mathis-ccwg-safecc)
+* [Compare Editor's Copy to Individual Draft](https://mattmathis.github.io/safeCC/#go.draft-mathis-ccwg-safecc.diff)
 
 
 ## Contributing
